@@ -1,16 +1,19 @@
 
 //let amount=prompt("Enter Amount"
  let notesArr=[2000,500,200,100,50] 
-let amount=prompt("Enter Amount")
+let amount=11500
  let givenNotes={2000:5,500:5,200:5,100:5,50:5}
 
  console.log("User input Amt is :",amount)
+ // check input amount is valid or not
  let valid=isValid(notesArr,amount);
     if(!valid){
      console.log("Invalid value")
   }else{
        countCurrency(amount); 
   }
+
+  //calculate total for given notes
   function calculateTotal(){
       let totalGivenAmt=0;
     for(let note in givenNotes ){
@@ -19,6 +22,7 @@ let amount=prompt("Enter Amount")
          console.log("Given notes total are :",totalGivenAmt)
      return totalGivenAmt;
   }
+ // check valid amount function
   function isValid(notesArr,amt){
       let isValid=false;
       let totalAmt=calculateTotal();
@@ -35,6 +39,8 @@ let amount=prompt("Enter Amount")
    }
      return isValid;
     }
+
+// count the number of notes
 function countCurrency(amount) 
     { 
         let noteCounter= []; 
@@ -52,7 +58,7 @@ function countCurrency(amount)
             } else{
               noteCounter[i] = 0
             }
-        } 
+        }
         // Print notes 
          console.log("Final notes count");
         for (let i = 0; i < notesArr.length; i++) { 
