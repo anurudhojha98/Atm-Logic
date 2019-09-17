@@ -1,0 +1,63 @@
+
+//let amount=prompt("Enter Amount"
+ let notesArr=[2000,500,200,100,50] 
+let amount=prompt("Enter Amount")
+ let givenNotes={2000:5,500:5,200:5,100:5,50:5}
+
+ console.log("User input Amt is :",amount)
+ let valid=isValid(notesArr,amount);
+    if(!valid){
+     console.log("Invalid value")
+  }else{
+       countCurrency(amount); 
+  }
+  function calculateTotal(){
+      let totalGivenAmt=0;
+    for(let note in givenNotes ){
+           totalGivenAmt+=givenNotes[note]*note;
+         }
+         console.log("Given notes total are :",totalGivenAmt)
+     return totalGivenAmt;
+  }
+  function isValid(notesArr,amt){
+      let isValid=false;
+      let totalAmt=calculateTotal();
+       if(totalAmt<amt){
+         isValid=false;
+       }else{
+     for(let note of notesArr){
+         if(amt<note && note%amt == 0){
+             return isValid=true;
+         }else if(amt>=note && amt%note == 0){
+                 return isValid=true;
+         }
+     }
+   }
+     return isValid;
+    }
+function countCurrency(amount) 
+    { 
+        let noteCounter= []; 
+        for (let i = 0; i < notesArr.length; i++) { 
+            if (amount >= notesArr[i]) { 
+               let dividend=Math.floor(amount / notesArr[i]);
+              for(let note in givenNotes){
+                if(dividend>givenNotes[note]){
+                   noteCounter[i]=givenNotes[note]
+                }else{
+                  noteCounter[i]=dividend 
+                }
+              } 
+             amount = amount - noteCounter[i] * notesArr[i];  
+            } else{
+              noteCounter[i] = 0
+            }
+        } 
+        // Print notes 
+         console.log("Final notes count");
+        for (let i = 0; i < notesArr.length; i++) { 
+               
+                console.log(notesArr[i] + " : "+ noteCounter[i]); 
+          }
+      
+    }
